@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>나눔스퀘어 네오 웹폰트</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="nanumsquareneo.css" rel="stylesheet">
+  <style>
+    html, body{margin:0;padding:0;height:100%}
+    body{background-color:#263238;font:1.2em/1.3em 'NanumSquareNeo', sans-serif;color:#ECEFF1}
+    body > div{display:table;width:100%;height:100%}
+    body > div > div{display:table-cell;vertical-align:middle}
+    p{text-align:center}
+    p strong.extra{font-weight: 800}
+    p strong.black{font-weight: 900}
+    p.light{font-weight: 300}
+    p input{vertical-align:middle}
+    /* variable */
+    p.variable {
+      font-family: 'NanumSquareNeoVariable', sans-serif !important;
+      font-weight: var(--text-weight);
+      font-variation-settings: "wght" var(--text-weight);
+    }
+</style>
+</head>
+
+<body class="container">
+
+  <div>
+    <div>
+      <p>기회는 일어나는 것이 아니라 만들어내는 것이다. (벭)</p>
+      <p><strong>기회는 일어나는 것이 아니라 만들어내는 것이다. (벭)</strong></p>
+      <p><strong class="extra">기회는 일어나는 것이 아니라 만들어내는 것이다. (벭)</strong></p>
+      <p><strong class="black">기회는 일어나는 것이 아니라 만들어내는 것이다. (벭)</strong></p>
+      <p class="light">기회는 일어나는 것이 아니라 만들어내는 것이다. (벭)</p>
+      <p></p>
+      <p>
+        <span>Variable: </span>
+        <span class="output" data-index="0">400</span><br>
+        <input type="range" min="100" max="900" value="400" class="slider" id="text-weight" name="text-weight" data-index="0">
+      </p>
+      <p class="variable">기회는 일어나는 것이 아니라 만들어내는 것이다. (벭)</p>
+    </div>
+  </div>
+
+<script>
+  // variable range script
+  var container = document.querySelector(".container");
+  var sliders = document.querySelectorAll(".slider");
+  var sliderValues = document.querySelectorAll(".output");
+  sliders.forEach(function (slider) {
+    var sliderIndex = slider.getAttribute("data-index");
+    var output = document.querySelector(".output[data-index=\"" + sliderIndex + "\"]");
+    slider.oninput = function () {
+      container.style.setProperty("--" + this.id, this.value);
+      output.innerHTML = this.value;
+    };
+  });
+</script>
+
+</body>
+
+</html>
